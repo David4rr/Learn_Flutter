@@ -77,10 +77,10 @@ class HomeScreens extends StatelessWidget {
                     MenuCard(
                       Menu(
                         id: 2,
-                        image: 'assets/pic.png',
-                        name: 'Burger Reguler',
-                        price: '12.000',
-                        pricepromo: '8.000',
+                        image: 'assets/pic (1).png',
+                        name: 'Paket Burger 1',
+                        price: '28.000',
+                        pricepromo: '22.000',
                         note:
                             'Pembelian diatas 5  item bonus satu burger promo berlaku hanya pengiriman radius 2 KM',
                         isPromo: false,
@@ -92,10 +92,10 @@ class HomeScreens extends StatelessWidget {
                     MenuCard(
                       Menu(
                         id: 3,
-                        image: 'assets/pic.png',
-                        name: 'Burger Reguler',
-                        price: '12.000',
-                        pricepromo: '8.000',
+                        image: 'assets/pic (2).png',
+                        name: 'Packet Burger 2',
+                        price: '25.000',
+                        pricepromo: '18.000',
                         note:
                             'Pembelian diatas 5  item bonus satu burger promo berlaku hanya pengiriman radius 2 KM',
                         isPromo: false,
@@ -107,10 +107,10 @@ class HomeScreens extends StatelessWidget {
                     MenuCard(
                       Menu(
                         id: 4,
-                        image: 'assets/pic.png',
-                        name: 'Burger Reguler',
-                        price: '12.000',
-                        pricepromo: '8.000',
+                        image: 'assets/pic (3).png',
+                        name: 'Packet Burger 3',
+                        price: '22.000',
+                        pricepromo: '16.000',
                         note:
                             'Pembelian diatas 5  item bonus satu burger promo berlaku hanya pengiriman radius 2 KM',
                         isPromo: false,
@@ -123,7 +123,7 @@ class HomeScreens extends StatelessWidget {
                       Menu(
                         id: 5,
                         image: 'assets/pic.png',
-                        name: 'Burger Reguler',
+                        name: 'Burger Reguler 2',
                         price: '12.000',
                         pricepromo: '8.000',
                         note:
@@ -138,7 +138,7 @@ class HomeScreens extends StatelessWidget {
                       Menu(
                         id: 6,
                         image: 'assets/pic.png',
-                        name: 'Burger Reguler',
+                        name: 'Burger Reguler 3',
                         price: '12.000',
                         pricepromo: '8.000',
                         note:
@@ -153,7 +153,7 @@ class HomeScreens extends StatelessWidget {
                       Menu(
                         id: 7,
                         image: 'assets/pic.png',
-                        name: 'Burger Reguler',
+                        name: 'Burger Reguler 4',
                         price: '12.000',
                         pricepromo: '8.000',
                         note:
@@ -168,12 +168,12 @@ class HomeScreens extends StatelessWidget {
                       Menu(
                         id: 8,
                         image: 'assets/pic.png',
-                        name: 'Burger Reguler',
+                        name: 'Burger Reguler 5',
                         price: '12.000',
                         pricepromo: '8.000',
                         note:
                             'Pembelian diatas 5  item bonus satu burger promo berlaku hanya pengiriman radius 2 KM',
-                        isPromo: false,
+                        isPromo: true,
                       ),
                     ),
                   ],

@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:foodsapp/Models/menu.dart';
+import 'package:foodsapp/Screens/detail_screen.dart';
 import '../theme.dart';
 
 class MenuCard extends StatelessWidget {
   // const MenuCard({Key? key}) : super(key: key);
 
   final Menu menu;
-  MenuCard(this.menu);
+  const MenuCard(this.menu, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const DetailScreen()));
+      },
       child: Row(
         children: [
           Image.asset(
@@ -18,7 +23,7 @@ class MenuCard extends StatelessWidget {
             width: 130,
             height: 110,
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
           Column(
@@ -39,7 +44,7 @@ class MenuCard extends StatelessWidget {
                 height: 4,
               ),
               Text(
-                '${menu.name}',
+                menu.name,
                 style: poppinsTextStyle.copyWith(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
