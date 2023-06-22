@@ -4,7 +4,7 @@ import 'package:foodsapp/Models/size.dart';
 
 class SizedCard extends StatelessWidget {
   final Size size;
-  SizedCard(this.size);
+  const SizedCard(this.size, {Key? key}) : super(key: key);
   // const SizedCard(this.size, {Key? key}) : super(key: key);
   // const SizedCard({Key? key}) : super(key: key);
 
@@ -14,7 +14,7 @@ class SizedCard extends StatelessWidget {
       onTap: () {},
       child: size.isActive
           ? Container(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 vertical: 5,
                 horizontal: 10,
               ),
@@ -36,7 +36,7 @@ class SizedCard extends StatelessWidget {
               ),
             )
           : Container(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 vertical: 5,
                 horizontal: 10,
               ),

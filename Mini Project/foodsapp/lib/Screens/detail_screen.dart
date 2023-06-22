@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:flutter/material.dart';
 import 'package:foodsapp/Models/size.dart';
 import 'package:foodsapp/Widgets/sized_card.dart';
@@ -19,19 +21,19 @@ class DetailScreen extends StatelessWidget {
             ),
             ListView(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 254,
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(20),
                     ),
                     color: Colors.white,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                       top: 30,
                       left: 25,
                       right: 25,
@@ -44,7 +46,7 @@ class DetailScreen extends StatelessWidget {
                           'assets/Promo.png',
                           width: 60,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 8,
                         ),
                         Row(
@@ -57,14 +59,14 @@ class DetailScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                   color: blackColor),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 44,
                             ),
                             Image.asset(
                               'assets/Minus.png',
                               width: 33,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 6,
                             ),
                             Text(
@@ -74,7 +76,7 @@ class DetailScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                   color: blackColor),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 6,
                             ),
                             Image.asset(
@@ -83,7 +85,7 @@ class DetailScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Row(
@@ -110,7 +112,7 @@ class DetailScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 18,
                         ),
                         Text(
@@ -121,7 +123,7 @@ class DetailScreen extends StatelessWidget {
                             color: blackColor,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Row(
@@ -129,19 +131,19 @@ class DetailScreen extends StatelessWidget {
                             SizedCard(
                               Size(id: 1, name: "Mini", isActive: true),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 12,
                             ),
                             SizedCard(
                               Size(id: 2, name: "Sedang", isActive: false),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 12,
                             ),
                             SizedCard(
                               Size(id: 3, name: "Besar", isActive: false),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 12,
                             ),
                             SizedCard(
@@ -149,7 +151,7 @@ class DetailScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 18,
                         ),
                         Text(
@@ -160,7 +162,7 @@ class DetailScreen extends StatelessWidget {
                             color: blackColor,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Container(
@@ -175,7 +177,7 @@ class DetailScreen extends StatelessWidget {
                             textAlign: TextAlign.justify,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 18,
                         ),
                         Text(
@@ -186,7 +188,7 @@ class DetailScreen extends StatelessWidget {
                             color: blackColor,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Row(
@@ -195,7 +197,7 @@ class DetailScreen extends StatelessWidget {
                               'assets/Img_store.png',
                               width: 50,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 18,
                             ),
                             Text(
@@ -206,13 +208,13 @@ class DetailScreen extends StatelessWidget {
                                 color: greyColor,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 14,
                             ),
-                            Spacer(),
+                            const Spacer(),
                             IconButton(
                               onPressed: () {},
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.chevron_right,
                                 color: greyColor,
                                 size: 30,
@@ -220,28 +222,28 @@ class DetailScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 18,
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: ElevatedButton(
                             onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18)),
+                              primary: yellowColor,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 12,
+                              ),
+                            ),
                             child: Text(
                               'Beli',
                               style: poppinsTextStyle.copyWith(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
                                   color: whiteColor),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18)),
-                              primary: yellowColor,
-                              padding: EdgeInsets.symmetric(
-                                vertical: 12,
-                              ),
                             ),
                           ),
                         )
@@ -252,7 +254,7 @@ class DetailScreen extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
