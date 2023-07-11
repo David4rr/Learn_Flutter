@@ -5,8 +5,69 @@ import 'package:foodsapp/Models/size.dart';
 import 'package:foodsapp/Widgets/sized_card.dart';
 import 'package:foodsapp/theme.dart';
 
-class DetailScreen extends StatelessWidget {
+class DetailScreen extends StatefulWidget {
   const DetailScreen({Key? key}) : super(key: key);
+
+  @override
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  int i = 1;
+  bool isMini = true;
+  bool isSedang = false;
+  bool isBesar = false;
+  bool isSuperBesar = false;
+
+  void _minus() {
+    if (i > 1) {
+      setState(() {
+        i--;
+      });
+    }
+  }
+
+  void _plus() {
+    setState(() {
+      i++;
+    });
+  }
+
+  void _clickMini() {
+    setState(() {
+      isMini = true;
+      isSedang = false;
+      isBesar = false;
+      isSuperBesar = false;
+    });
+  }
+
+  void _clickSedang() {
+    setState(() {
+      isMini = false;
+      isSedang = true;
+      isBesar = false;
+      isSuperBesar = false;
+    });
+  }
+
+  void _clickBesar() {
+    setState(() {
+      isMini = false;
+      isSedang = false;
+      isBesar = true;
+      isSuperBesar = false;
+    });
+  }
+
+  void _clickSuperBesar() {
+    setState(() {
+      isMini = false;
+      isSedang = false;
+      isBesar = false;
+      isSuperBesar = true;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,15 +123,18 @@ class DetailScreen extends StatelessWidget {
                             const SizedBox(
                               width: 44,
                             ),
-                            Image.asset(
-                              'assets/Minus.png',
-                              width: 33,
+                            InkWell(
+                              onTap: _minus,
+                              child: Image.asset(
+                                'assets/Minus.png',
+                                width: 33,
+                              ),
                             ),
                             const SizedBox(
                               width: 6,
                             ),
                             Text(
-                              '1',
+                              '$i',
                               style: poppinsTextStyle.copyWith(
                                   fontSize: 22,
                                   fontWeight: FontWeight.w400,
@@ -79,9 +143,12 @@ class DetailScreen extends StatelessWidget {
                             const SizedBox(
                               width: 6,
                             ),
-                            Image.asset(
-                              'assets/Plus.png',
-                              width: 33,
+                            InkWell(
+                              onTap: _plus,
+                              child: Image.asset(
+                                'assets/Plus.png',
+                                width: 33,
+                              ),
                             ),
                           ],
                         ),
@@ -128,26 +195,62 @@ class DetailScreen extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            SizedCard(
-                              Size(id: 1, name: "Mini", isActive: true),
+                            InkWell(
+                              onTap: () {
+                                _clickMini();
+                              },
+                              child: SizedCard(
+                                Size(
+                                  id: 1,
+                                  name: "Mini",
+                                  isActive: isMini,
+                                ),
+                              ),
                             ),
                             const SizedBox(
                               width: 12,
                             ),
-                            SizedCard(
-                              Size(id: 2, name: "Sedang", isActive: false),
+                            InkWell(
+                              onTap: () {
+                                _clickSedang();
+                              },
+                              child: SizedCard(
+                                Size(
+                                  id: 2,
+                                  name: "Sedang",
+                                  isActive: isSedang,
+                                ),
+                              ),
                             ),
                             const SizedBox(
                               width: 12,
                             ),
-                            SizedCard(
-                              Size(id: 3, name: "Besar", isActive: false),
+                            InkWell(
+                              onTap: () {
+                                _clickBesar();
+                              },
+                              child: SizedCard(
+                                Size(
+                                  id: 3,
+                                  name: "Besar",
+                                  isActive: isBesar,
+                                ),
+                              ),
                             ),
                             const SizedBox(
                               width: 12,
                             ),
-                            SizedCard(
-                              Size(id: 4, name: "Super Besar", isActive: false),
+                            InkWell(
+                              onTap: () {
+                                _clickSuperBesar();
+                              },
+                              child: SizedCard(
+                                Size(
+                                  id: 4,
+                                  name: "Super Besar",
+                                  isActive: isSuperBesar,
+                                ),
+                              ),
                             ),
                           ],
                         ),

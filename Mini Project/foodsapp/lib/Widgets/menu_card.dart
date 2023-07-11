@@ -13,8 +13,8 @@ class MenuCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const DetailScreen()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const DetailScreen()));
       },
       child: Row(
         children: [
