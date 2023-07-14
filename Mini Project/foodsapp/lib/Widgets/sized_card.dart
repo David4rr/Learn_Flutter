@@ -11,7 +11,6 @@ class SizedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
       child: size.isActive
           ? Container(
               padding: const EdgeInsets.symmetric(

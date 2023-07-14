@@ -1,9 +1,11 @@
-// ignore_for_file: sized_box_for_whitespace
+// ignore_for_file: sized_box_for_whitespace, unused_field
 
 import 'package:flutter/material.dart';
 import 'package:foodsapp/Models/size.dart';
 import 'package:foodsapp/Widgets/sized_card.dart';
 import 'package:foodsapp/theme.dart';
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetailScreen extends StatefulWidget {
   const DetailScreen({Key? key}) : super(key: key);
@@ -13,6 +15,12 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  int dataPrice = 28000;
+  int dataPricePromo = 22000;
+
+  int price = 28000;
+  int pricePromo = 22000;
+
   int i = 1;
   bool isMini = true;
   bool isSedang = false;
@@ -23,6 +31,20 @@ class _DetailScreenState extends State<DetailScreen> {
     if (i > 1) {
       setState(() {
         i--;
+
+        if (isMini == true) {
+          price = dataPrice * i;
+          pricePromo = dataPricePromo * i;
+        } else if (isSedang == true) {
+          price = (dataPrice + 2000) * i;
+          pricePromo = (dataPricePromo + 2000) * i;
+        } else if (isBesar == true) {
+          price = (dataPrice + 4000) * i;
+          pricePromo = (dataPricePromo + 4000) * i;
+        } else if (isSuperBesar == true) {
+          price = (dataPrice + 6000) * i;
+          pricePromo = (dataPricePromo + 6000) * i;
+        }
       });
     }
   }
@@ -30,11 +52,27 @@ class _DetailScreenState extends State<DetailScreen> {
   void _plus() {
     setState(() {
       i++;
+
+      if (isMini == true) {
+        price = dataPrice * i;
+        pricePromo = dataPricePromo * i;
+      } else if (isSedang == true) {
+        price = (dataPrice + 2000) * i;
+        pricePromo = (dataPricePromo + 2000) * i;
+      } else if (isBesar == true) {
+        price = (dataPrice + 4000) * i;
+        pricePromo = (dataPricePromo + 4000) * i;
+      } else if (isSuperBesar == true) {
+        price = (dataPrice + 6000) * i;
+        pricePromo = (dataPricePromo + 6000) * i;
+      }
     });
   }
 
   void _clickMini() {
     setState(() {
+      price = dataPrice * i;
+      pricePromo = dataPricePromo * i;
       isMini = true;
       isSedang = false;
       isBesar = false;
@@ -44,6 +82,8 @@ class _DetailScreenState extends State<DetailScreen> {
 
   void _clickSedang() {
     setState(() {
+      price = (dataPrice + 2000) * i;
+      pricePromo = (dataPricePromo + 2000) * i;
       isMini = false;
       isSedang = true;
       isBesar = false;
@@ -53,6 +93,8 @@ class _DetailScreenState extends State<DetailScreen> {
 
   void _clickBesar() {
     setState(() {
+      price = (dataPrice + 4000) * i;
+      pricePromo = (dataPricePromo + 4000) * i;
       isMini = false;
       isSedang = false;
       isBesar = true;
@@ -62,6 +104,8 @@ class _DetailScreenState extends State<DetailScreen> {
 
   void _clickSuperBesar() {
     setState(() {
+      price = (dataPrice + 6000) * i;
+      pricePromo = (dataPricePromo + 6000) * i;
       isMini = false;
       isSedang = false;
       isBesar = false;
@@ -69,8 +113,35 @@ class _DetailScreenState extends State<DetailScreen> {
     });
   }
 
+  bool _hasCallSupport = false;
+  Future<void>? _launched;
+  @override
+  void initState() {
+    super.initState();
+    // Check for phone call support.
+    canLaunchUrl(Uri(scheme: 'tel', path: '123')).then((bool result) {
+      setState(() {
+        _hasCallSupport = result;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    Future<void> _launchInBrowser(Uri url) async {
+      if (!await launchUrl(
+        url,
+        mode: LaunchMode.externalApplication,
+      )) {
+        throw Exception('Could not launch $url');
+      }
+    }
+    final Uri toLaunch =
+        Uri(scheme: 'https', host: 'www.instagram.com', path: 'itscryptic2/');
+    final Uri toLaunch2 =
+        Uri(scheme: 'https', host: 'wa.me', path: '/', queryParameters: {
+      'text': 'Beli Burgernya Jika tidak saya pinjam 200k :v'
+    });
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -158,7 +229,11 @@ class _DetailScreenState extends State<DetailScreen> {
                         Row(
                           children: [
                             Text(
-                              'Rp 28.000',
+                              NumberFormat.currency(
+                                      locale: 'id',
+                                      symbol: 'Rp ',
+                                      decimalDigits: 0)
+                                  .format(price),
                               style: poppinsTextStyle.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -170,7 +245,11 @@ class _DetailScreenState extends State<DetailScreen> {
                               width: 4,
                             ),
                             Text(
-                              'Rp 22.000',
+                              NumberFormat.currency(
+                                      locale: 'id',
+                                      symbol: 'Rp ',
+                                      decimalDigits: 0)
+                                  .format(pricePromo),
                               style: poppinsTextStyle.copyWith(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -294,36 +373,41 @@ class _DetailScreenState extends State<DetailScreen> {
                         const SizedBox(
                           height: 12,
                         ),
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/Img_store.png',
-                              width: 50,
-                            ),
-                            const SizedBox(
-                              width: 18,
-                            ),
-                            Text(
-                              'Jl. Raya Mayong Jepara\n Jawa tengah',
-                              style: poppinsTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: greyColor,
+                        InkWell(
+                          onTap: () => setState(() {
+                            _launched = _launchInBrowser(toLaunch);
+                          }),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                'assets/Img_store.png',
+                                width: 50,
                               ),
-                            ),
-                            const SizedBox(
-                              width: 14,
-                            ),
-                            const Spacer(),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.chevron_right,
-                                color: greyColor,
-                                size: 30,
+                              const SizedBox(
+                                width: 18,
                               ),
-                            ),
-                          ],
+                              Text(
+                                'Jl. Raya Mayong Jepara\n Jawa tengah',
+                                style: poppinsTextStyle.copyWith(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: greyColor,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 14,
+                              ),
+                              const Spacer(),
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.chevron_right,
+                                  color: greyColor,
+                                  size: 30,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(
                           height: 18,
@@ -331,7 +415,9 @@ class _DetailScreenState extends State<DetailScreen> {
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => setState(() {
+                              _launched = _launchInBrowser(toLaunch2);
+                            }),
                             style: ElevatedButton.styleFrom(
                               elevation: 0,
                               shape: RoundedRectangleBorder(
