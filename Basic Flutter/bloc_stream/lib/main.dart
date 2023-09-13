@@ -27,7 +27,7 @@ class StreamPage extends StatelessWidget {
   Stream<int> countStream() async* {
     for (int i = 1; i <= 100; i++) {
       await Future.delayed(const Duration(seconds: 1));
-      yield i;
+      yield i; // untuk menghasilkan (emit) nilai i ke dalam stream. Artinya, setiap kali loop berjalan, nilai i akan dikirimkan ke stream sebagai output.
     }
   }
 
@@ -38,9 +38,12 @@ class StreamPage extends StatelessWidget {
         title: const Text('Stream Bloc'),
       ),
       body: StreamBuilder(
-        stream: countStream(),
+        stream:
+            countStream(), // parameter yang digunakan untuk menentukan stream mana yang akan digunakan untuk mengambil data
         builder: (context, snapshot) {
+          // berisi data yang diterima dari stream
           if (snapshot.connectionState == ConnectionState.waiting) {
+            // Jika koneksi stream masih dalam status "waiting" (menunggu), maka widget akan menampilkan teks "Loading ..."
             return const Center(
               child: Text(
                 'Loading ...',
@@ -50,6 +53,7 @@ class StreamPage extends StatelessWidget {
               ),
             );
           } else {
+            // Jika kondisi di atas tidak terpenuhi, artinya data sudah tersedia dalam stream, maka widget akan menampilkan data yang diterima dari stream
             return Center(
               child: Text(
                 "${snapshot.data}",
