@@ -1,3 +1,4 @@
+import 'package:bloc_stream/Screens/bloc_cubit_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -37,33 +38,62 @@ class StreamPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Stream Bloc'),
       ),
-      body: StreamBuilder(
-        stream:
-            countStream(), // parameter yang digunakan untuk menentukan stream mana yang akan digunakan untuk mengambil data
-        builder: (context, snapshot) {
-          // berisi data yang diterima dari stream
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            // Jika koneksi stream masih dalam status "waiting" (menunggu), maka widget akan menampilkan teks "Loading ..."
-            return const Center(
-              child: Text(
-                'Loading ...',
-                style: TextStyle(
-                  fontSize: 16,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          StreamBuilder(
+            stream:
+                countStream(), // parameter yang digunakan untuk menentukan stream mana yang akan digunakan untuk mengambil data
+            builder: (context, snapshot) {
+              // berisi data yang diterima dari stream
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                // Jika koneksi stream masih dalam status "waiting" (menunggu), maka widget akan menampilkan teks "Loading ..."
+                return const Center(
+                  child: Text(
+                    'Loading ...',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                );
+              } else {
+                // Jika kondisi di atas tidak terpenuhi, artinya data sudah tersedia dalam stream, maka widget akan menampilkan data yang diterima dari stream
+                return Center(
+                  child: Text(
+                    "${snapshot.data}",
+                    style: const TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                );
+              }
+            },
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => CubitBloc(),
                 ),
-              ),
-            );
-          } else {
-            // Jika kondisi di atas tidak terpenuhi, artinya data sudah tersedia dalam stream, maka widget akan menampilkan data yang diterima dari stream
-            return Center(
-              child: Text(
-                "${snapshot.data}",
-                style: const TextStyle(
-                  fontSize: 16,
+              );
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(
+                  10,
                 ),
+                color: Colors.black12,
               ),
-            );
-          }
-        },
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text('Cubit'),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
