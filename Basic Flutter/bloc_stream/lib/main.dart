@@ -1,4 +1,4 @@
-import 'package:bloc_stream/Screens/bloc_cubit_page.dart';
+import 'package:bloc_stream/Screens/page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -70,28 +70,59 @@ class StreamPage extends StatelessWidget {
             },
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
-          InkWell(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => CubitBloc(),
+          const Divider(
+            thickness: 2,
+            indent: 10,
+            endIndent: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => CubitBloc(),
+                    ),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                    color: Colors.black12,
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Cubit'),
+                  ),
                 ),
-              );
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  10,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => BuilderBloc(),
+                    ),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                    color: Colors.black12,
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Bloc Builder'),
+                  ),
                 ),
-                color: Colors.black12,
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('Cubit'),
-              ),
-            ),
+            ],
           )
         ],
       ),

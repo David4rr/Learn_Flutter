@@ -1,5 +1,4 @@
-import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
+part of 'page.dart';
 
 // ignore: must_be_immutable
 class CubitBloc extends StatelessWidget {
