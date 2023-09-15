@@ -144,6 +144,34 @@ class StreamPage extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ConsumerBloc(),
+                    ),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                    color: Colors.black12,
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Bloc Consumer'),
+                  ),
+                ),
+              ),
+            ],
           )
         ],
       ),
