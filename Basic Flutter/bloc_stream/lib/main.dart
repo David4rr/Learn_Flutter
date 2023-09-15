@@ -1,5 +1,7 @@
+import 'package:bloc_stream/Bloc/counter.dart';
 import 'package:bloc_stream/Screens/page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,13 +13,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return BlocProvider( // Untuk meninjeksi atau menyalurkan ke semua build (seperti nadi)
+      create: (context) => Counter(), // memanggil Counter dan menyebarkan ke semua build jalurnya menggunakan context
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const StreamPage(),
       ),
-      home: const StreamPage(),
     );
   }
 }
@@ -149,6 +154,7 @@ class StreamPage extends StatelessWidget {
             height: 10,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               InkWell(
                 onTap: () {
@@ -168,6 +174,27 @@ class StreamPage extends StatelessWidget {
                   child: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text('Bloc Consumer'),
+                  ),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ProviderBloc(),
+                    ),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(
+                      10,
+                    ),
+                    color: Colors.black12,
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text('Bloc Provider'),
                   ),
                 ),
               ),

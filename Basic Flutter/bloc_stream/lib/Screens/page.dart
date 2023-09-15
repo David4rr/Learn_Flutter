@@ -6,3 +6,4 @@ part 'bloc_cubit_page.dart';
 part 'bloc_builder.dart';
 part 'bloc_listener.dart';
 part 'bloc_consumer.dart';
+part 'bloc_provider.dart';
